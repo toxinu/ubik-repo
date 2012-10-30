@@ -13,7 +13,7 @@ class Package(Control):
         Control.__init__(self)
         self.name = 'htop'
         self.version = '0.8.2.1'
-        self.release = '2'
+        self.release = '3'
         self.requires = []
         self.arch = ''
         self.dist = ''
@@ -54,13 +54,13 @@ You should be certain that you trust any software you grant root privileges."""
         pass
 
     def post_install(self):
-        stream_logger.info(caveats)
+        stream_logger.info(self.caveats)
 
     def pre_upgrade(self):
         pass
 
     def post_upgrade(self):
-        stream_logger.info(caveats)
+        stream_logger.info(self.caveats)
 
     def pre_remove(self):
         pass
