@@ -13,16 +13,25 @@ class Package(Control):
         Control.__init__(self)
         self.name = 'htop'
         self.version = '0.8.2.1'
-        self.release = '1'
+        self.release = '2'
         self.requires = []
         self.arch = ''
         self.dist = ''
         self.vers = ''
-        self.description = ''
+        self.description = 'Htop is an interactive process viewer for Linux. It is a text-mode application (for console or X terminals) and requires ncurses.'
 
         self.cur_dir = os.getcwd()
         self.src_dir = os.path.join(os.getcwd(), 'source')
         self.pkg_dir = os.path.join(os.getcwd(), 'build')
+
+        self.caveats = """
+htop requires root privileges to correctly display all running processes.
+You can either run the program via `sudo` or set the setuid bit:
+
+sudo chown root:wheel #{bin}/htop
+sudo chmod u+s #{bin}/htop
+
+You should be certain that you trust any software you grant root privileges."""
 
     def build(self):
         stream_logger.info('Building...')
@@ -45,21 +54,13 @@ class Package(Control):
         pass
 
     def post_install(self):
-        caveats = """
-htop requires root privileges to correctly display all running processes.
-You can either run the program via `sudo` or set the setuid bit:
-
-sudo chown root:wheel #{bin}/htop
-sudo chmod u+s #{bin}/htop
-
-You should be certain that you trust any software you grant root privileges."""
         stream_logger.info(caveats)
 
     def pre_upgrade(self):
         pass
 
     def post_upgrade(self):
-        pass
+        stream_logger.info(caveats)
 
     def pre_remove(self):
         pass
