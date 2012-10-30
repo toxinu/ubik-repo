@@ -1,0 +1,4 @@
+./bin/htop
+./share/applications/htop.desktop
+./share/man/man1/htop.1
+./share/pixmaps/htop.png
