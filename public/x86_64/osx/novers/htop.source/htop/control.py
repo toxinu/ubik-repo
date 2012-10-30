@@ -13,7 +13,7 @@ class Package(Control):
         Control.__init__(self)
         self.name = 'htop'
         self.version = '0.8.2.1'
-        self.release = '0'
+        self.release = '1'
         self.requires = []
         self.arch = ''
         self.dist = ''
@@ -45,7 +45,15 @@ class Package(Control):
         pass
 
     def post_install(self):
-        pass
+        caveats = """
+htop requires root privileges to correctly display all running processes.
+You can either run the program via `sudo` or set the setuid bit:
+
+sudo chown root:wheel #{bin}/htop
+sudo chmod u+s #{bin}/htop
+
+You should be certain that you trust any software you grant root privileges."""
+        stream_logger.info(caveats)
 
     def pre_upgrade(self):
         pass
