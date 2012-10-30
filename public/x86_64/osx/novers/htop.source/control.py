@@ -13,7 +13,7 @@ class Package(Control):
         Control.__init__(self)
         self.name = 'htop'
         self.version = '0.8.2.1'
-        self.release = '3'
+        self.release = '4'
         self.requires = []
         self.arch = ''
         self.dist = ''
@@ -28,10 +28,11 @@ class Package(Control):
 htop requires root privileges to correctly display all running processes.
 You can either run the program via `sudo` or set the setuid bit:
 
-sudo chown root:wheel #{bin}/htop
-sudo chmod u+s #{bin}/htop
+sudo chown root:wheel %s/bin/htop
+sudo chmod u+s %s/bin/htop
 
-You should be certain that you trust any software you grant root privileges."""
+You should be certain that you trust any software you grant root privileges.
+""" % (conf.get('settings', 'packages'), conf.get('settings', 'packages'))
 
     def build(self):
         stream_logger.info('Building...')
