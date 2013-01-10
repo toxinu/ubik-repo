@@ -28,10 +28,6 @@ class Package(Control):
         self.archive_name = "%s-%s.tar.gz" % (self.name, self.version)
         self.dir_name = "%s-%s" % (self.name, self.version)
 
-        #
-        # You can easily add some pre_install, post_install, *_upgrade and *_remove methods
-        #
-
     def build(self):
         stream_logger.info('Building...')
 
